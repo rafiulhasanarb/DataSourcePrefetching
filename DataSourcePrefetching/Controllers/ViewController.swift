@@ -18,6 +18,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableView.register(UINib(nibName: "ImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageTableViewCell")
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.prefetchDataSource = self
     }
 }
@@ -70,7 +74,7 @@ extension ViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as? ImageTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell") as? ImageTableViewCell else {
             fatalError("Sorry, could not load cell")
         }
         cell.updateAppearanceFor(.none)

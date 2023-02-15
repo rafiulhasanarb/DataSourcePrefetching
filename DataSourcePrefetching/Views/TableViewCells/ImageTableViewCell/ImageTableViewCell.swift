@@ -26,8 +26,10 @@ class ImageTableViewCell: UITableViewCell {
         if let _image = image {
             thumbImageView.image = _image
             loadingIndicator.stopAnimating()
+            loadingIndicator.isHidden = true
         } else {
             loadingIndicator.startAnimating()
+            loadingIndicator.isHidden = false
             thumbImageView.image = .none
         }
     }
